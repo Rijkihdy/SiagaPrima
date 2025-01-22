@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Bencana extends Model
 {
@@ -27,5 +28,11 @@ class Bencana extends Model
     public function penugasanRelawans()
     {
         return $this->hasMany(PenugasanRelawan::class);
+    }
+
+    // Mutator untuk waktu_kejadian
+    public function getWaktuKejadianAttribute($value)
+    {
+        return $value ? Carbon::parse($value) : null;
     }
 }

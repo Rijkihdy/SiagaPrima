@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('no_hp');
-            $table->string('password'); // Pastikan di-hash saat menyimpan!
+            $table->string('password'); 
+            $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['masyarakat', 'pmi']);
             $table->rememberToken(); // Untuk fitur "Remember Me"
             $table->timestamps();
