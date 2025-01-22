@@ -15,6 +15,25 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                </x-nav-link>
+                <x-nav-link :href="route('bencana.index')" :active="request()->routeIs('bencana.*')">
+                    {{ __('Bencana') }}
+                </x-nav-link>
+                <x-nav-link :href="route('relawan.index')" :active="request()->routeIs('relawan.*')">
+                    {{ __('Relawan') }}
+                </x-nav-link>
+                <x-nav-link :href="route('permintaan_p3k.index')" :active="request()->routeIs('permintaan_p3k.*')">
+                    {{ __('Permintaan P3K') }}
+                </x-nav-link>
+                <x-nav-link :href="route('data_korban.index')" :active="request()->routeIs('data_korban.*')">
+                    {{ __('Data Korban') }}
+                </x-nav-link>
+                <x-nav-link :href="route('kontak_darurat.index')" :active="request()->routeIs('kontak_darurat.*')">
+                    {{ __('Kontak Darurat') }}
+                </x-nav-link>
+                <x-nav-link :href="route('penugasan_relawan.index')" :active="request()->routeIs('penugasan_relawan.*')">
+                    {{ __('Penugasan Relawan') }}
+                </x-nav-link>
                 </div>
             </div>
 

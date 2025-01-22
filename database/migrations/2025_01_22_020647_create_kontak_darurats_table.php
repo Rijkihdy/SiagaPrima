@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('kontak_darurats', function (Blueprint $table) {
+            $table->id();
+            $table->enum('nama_kontak', ['pmi', 'rumah_sakit', 'polisi', 'pemadam', 'bpbd', 'sar', 'lainnya']);
+            $table->string('no_kontak');
+            $table->string('alamat')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('kontak_darurats');
+    }
+};
