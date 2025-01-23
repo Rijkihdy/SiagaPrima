@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('data_korbans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bencana_id')->constrained('bencanas')->onDelete('cascade'); // Relasi ke bencana, onDelete cascade
-            $table->string('nama_korban');
+            $table->foreignId('bencana_id')->nullable()->constrained('bencanas')->onDelete('cascade'); 
+            $table->foreignId('permintaan_p3k_id')->nullable()->constrained('permintaan_p3ks')->onDelete('cascade');
             $table->text('alamat')->nullable();
             $table->string('no_telp_korban')->nullable();
             $table->text('deskripsi')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('umur')->nullable();
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->string('foto_korban')->nullable();
+            $table->integer('jumlah_korban');
             $table->text('rujukan')->nullable();
             $table->timestamps();
         });

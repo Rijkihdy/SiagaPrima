@@ -19,9 +19,14 @@ class PenugasanRelawanController extends Controller
 
     public function create()
     {
-        $relawans = Relawan::where('status_relawan', 'aktif')->get();
-        $bencanas = Bencana::where('status_bencana', 'berlangsung')->get();
-        $permintaanP3ks = PermintaanP3k::where('status_permintaan', 'diterima')->get();
+        // $relawans = Relawan::where('status_relawan', 'aktif')->get();
+        // $bencanas = Bencana::where('status_bencana', 'berlangsung')->get();
+        // $permintaanP3ks = PermintaanP3k::where('status_permintaan', 'diterima')->get();
+        // return view('penugasan_relawan.create', compact('relawans', 'bencanas', 'permintaanP3ks'));
+
+        $relawans = Relawan::all();
+        $bencanas = Bencana::all();
+        $permintaanP3ks = PermintaanP3k::all(); // Ini penting!
         return view('penugasan_relawan.create', compact('relawans', 'bencanas', 'permintaanP3ks'));
     }
 

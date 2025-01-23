@@ -11,6 +11,7 @@ class DataKorban extends Model
 
     protected $fillable = [
         'bencana_id',
+        'permintaan_p3k_id',
         'nama_korban',
         'alamat',
         'no_telp_korban',
@@ -25,5 +26,9 @@ class DataKorban extends Model
     public function bencana()
     {
         return $this->belongsTo(Bencana::class);
+    }
+    public function permintaanP3k()
+    {
+        return $this->belongsTo(PermintaanP3k::class);
     }
 }

@@ -15,13 +15,54 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Membuat akun admin
+        // Akun admin
         User::create([
             'nama' => 'admin',
             'email' => 'admin@gmail.com',
-            'no_hp' => '081234567890', // Contoh nomor HP
+            'no_hp' => '081234567890',
             'password' => Hash::make('password'),
-            'role' => 'pmi', // Contoh role: pmi (Palang Merah Indonesia)
+            'role' => 'pmi',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+
+        // Akun tambahan
+        User::create([
+            'nama' => 'user1',
+            'email' => 'user1@gmail.com',
+            'no_hp' => '081234567891',
+            'password' => Hash::make('password'),
+            'role' => 'masyarakat',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'nama' => 'user2',
+            'email' => 'user2@gmail.com',
+            'no_hp' => '081234567892',
+            'password' => Hash::make('password'),
+            'role' => 'masyarakat',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'nama' => 'user3',
+            'email' => 'user3@gmail.com',
+            'no_hp' => '081234567893',
+            'password' => Hash::make('password'),
+            'role' => 'masyarakat',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'nama' => 'user4',
+            'email' => 'user4@gmail.com',
+            'no_hp' => '081234567894',
+            'password' => Hash::make('password'),
+            'role' => 'masyarakat',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);

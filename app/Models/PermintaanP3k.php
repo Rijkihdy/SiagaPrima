@@ -29,4 +29,8 @@ class PermintaanP3k extends Model
     {
         return $this->hasMany(PenugasanRelawan::class);
     }
+    public function dataKorbans()
+    {
+        return $this->hasMany(DataKorban::class);
+    }
 }

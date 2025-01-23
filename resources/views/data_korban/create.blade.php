@@ -10,10 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="container">
-                        <h1>Tambah Data Korban</h1>
+                        <h1 class="mb-4 text-2xl font-bold">Tambah Data Korban</h1>
 
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger mb-4">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -22,17 +22,25 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('data_korban.store') }}" method="POST" enctype="multipart/form-data"> {{-- Penting: tambahkan enctype --}}
+                        <form action="{{ route('data_korban.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
                                 <label for="bencana_id" class="form-label">Bencana:</label>
-                                <select class="form-control" id="bencana_id" name="bencana_id" required>
-                                    <option value="">Pilih Bencana</option>
+                                <select class="form-control" id="bencana_id" name="bencana_id">
+                                    <option value="">Pilih Bencana (Jika ada)</option>
                                     @foreach ($bencanas as $bencana)
-                                        <option value="{{ $bencana->id }}" {{ old('bencana_id') == $bencana->id ? 'selected' : '' }}>
-                                            {{ $bencana->nama_bencana }}
-                                        </option>
+                                        <option value="{{ $bencana->id }}" {{ old('bencana_id') == $bencana->id ? 'selected' : '' }}>{{ $bencana->nama_bencana }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="permintaan_p3k_id" class="form-label">Permintaan P3K:</label>
+                                <select class="form-control" id="permintaan_p3k_id" name="permintaan_p3k_id">
+                                    <option value="">Pilih Permintaan P3K (Jika ada)</option>
+                                    @foreach ($permintaanP3ks as $permintaanP3k)
+                                        <option value="{{ $permintaanP3k->id }}" {{ old('permintaan_p3k_id') == $permintaanP3k->id ? 'selected' : '' }}>{{ $permintaanP3k->nama_kegiatan }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -44,13 +52,13 @@
 
                             <div class="mb-3">
                                 <label for="umur" class="form-label">Usia:</label>
-                                <input type="number" class="form-control" id="umur" name="umur" value="{{ old('umur') }}" min="0"> {{-- Usia boleh null --}}
+                                <input type="number" class="form-control" id="umur" name="umur" value="{{ old('umur') }}" min="0">
                             </div>
 
                             <div class="mb-3">
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin:</label>
-                                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin"> {{-- Jenis Kelamin boleh null --}}
-                                    <option value="">Pilih Jenis Kelamin</option> {{-- Opsi default kosong --}}
+                                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                    <option value="">Pilih Jenis Kelamin</option>
                                     <option value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                                     <option value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
@@ -58,12 +66,12 @@
 
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat:</label>
-                                <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat') }}</textarea> {{-- Alamat boleh null --}}
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat') }}</textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label for="kondisi" class="form-label">Kondisi:</label>
-                                <textarea class="form-control" id="kondisi" name="deskripsi" rows="3">{{ old('deskripsi') }}</textarea> {{-- Kondisi di database bernama deskripsi --}}
+                                <label for="deskripsi" class="form-label">Kondisi:</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3">{{ old('deskripsi') }}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -86,6 +94,10 @@
                                 <input type="text" class="form-control" id="no_telp_korban" name="no_telp_korban" value="{{ old('no_telp_korban') }}">
                             </div>
 
+                            <div class="mb-3">
+                                <label for="jumlah_korban" class="form-label">Jumlah Korban:</label>
+                                <input type="number" class="form-control" id="jumlah_korban" name="jumlah_korban" value="{{ old('jumlah_korban', 1) }}" min="1" required>
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="{{ route('data_korban.index') }}" class="btn btn-secondary">Batal</a>

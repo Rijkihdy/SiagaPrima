@@ -13,10 +13,7 @@ class PenugasanRelawan extends Model
         'relawan_id',
         'bencana_id',
         'permintaan_p3k_id',
-        'jenis_penugasan',
-        'waktu_penugasan',
         'status_penugasan',
-        'keterangan'
     ];
 
     public function relawan()

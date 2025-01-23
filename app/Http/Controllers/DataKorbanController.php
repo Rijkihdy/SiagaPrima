@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKorban;
-use App\Models\Bencana; // Import model Bencana
+use App\Models\Bencana; 
+use App\Models\PermintaanP3k;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +19,9 @@ class DataKorbanController extends Controller
 
     public function create()
     {
-        $bencanas = Bencana::all(); // Mengambil semua data bencana untuk ditampilkan di form
-        return view('data_korban.create', compact('bencanas'));
+        $bencanas = Bencana::all();
+        $permintaanP3ks = PermintaanP3k::all();
+        return view('data_korban.create', compact('bencanas', 'permintaanP3ks'));
     }
 
     public function store(Request $request)

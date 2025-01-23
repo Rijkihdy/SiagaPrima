@@ -31,12 +31,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($kontakDarurats->isEmpty()) {{-- Perbaiki nama variabel menjadi $kontakDarurat --}}
+                                @if ($kontakDarurats->isEmpty()) 
                                     <tr>
                                         <td colspan="6" class="text-center">Tidak ada data kontak darurat.</td>
                                     </tr>
                                 @else
-                                    @foreach ($kontakDarurats as $kontak) {{-- Perbaiki nama variabel menjadi $kontakDarurat --}}
+                                    @foreach ($kontakDarurats as $kontak)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $kontak->nama_kontak }}</td>
