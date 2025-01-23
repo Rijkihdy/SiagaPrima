@@ -22,9 +22,9 @@ class KontakDaruratController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kontak' => 'required|in:pmi,rumah_sakit,polisi,pemadam,bpbd,sar,lainnya',
-            'no_kontak' => 'required|string|max:20',
-            'alamat' => 'nullable|string',
+            'nama_kontak' => 'required|string|max:255', 
+            'no_kontak' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -49,9 +49,9 @@ class KontakDaruratController extends Controller
     public function update(Request $request, KontakDarurat $kontakDarurat)
     {
         $validator = Validator::make($request->all(), [
-            'nama_kontak' => 'required|in:pmi,rumah_sakit,polisi,pemadam,bpbd,sar,lainnya',
-            'no_kontak' => 'required|string|max:20',
-            'alamat' => 'nullable|string',
+            'nama_kontak' => 'required|string|max:255', 
+            'no_kontak' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
