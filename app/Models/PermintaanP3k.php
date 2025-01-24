@@ -20,6 +20,10 @@ class PermintaanP3k extends Model
         'foto_p3k',
     ];
 
+    protected $casts = [
+        'waktu_pengajuan' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

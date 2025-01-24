@@ -1,67 +1,74 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-white leading-tight bg-red-600 p-4 rounded">
             {{ __('Ajukan Permintaan P3K') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="container">
-                        <h1>Ajukan Permintaan P3K</h1>
+    <div class="py-6">
+        <div class="mx-auto px-6">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
+                <div class="p-6">
+                    <h1 class="text-2xl font-bold mb-6">Ajukan Permintaan P3K</h1>
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger mb-4">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    <!-- Error Alerts -->
+                    @if ($errors->any())
+                        <div class="mb-4 p-4 bg-red-200 text-red-800 rounded">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                        <form action="{{ route('permintaan_p3k.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                    <!-- Form -->
+                    <form action="{{ route('permintaan_p3k.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                        @csrf
 
-                            <div class="mb-3">
-                                <label for="kebutuhan_p3k" class="form-label">Kebutuhan P3K:</label>
-                                <textarea class="form-control" id="kebutuhan_p3k" name="kebutuhan_p3k" rows="3" required>{{ old('kebutuhan_p3k') }}</textarea>
-                            </div>
+                        <div>
+                            <label for="kebutuhan_p3k" class="block font-medium text-gray-700">Kebutuhan P3K</label>
+                            <textarea name="kebutuhan_p3k" id="kebutuhan_p3k" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" required>{{ old('kebutuhan_p3k') }}</textarea>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="waktu_pengajuan" class="form-label">Waktu Pengajuan:</label>
-                                <input type="datetime-local" class="form-control" id="waktu_pengajuan" name="waktu_pengajuan" value="{{ old('waktu_pengajuan') }}" required>
-                            </div>
+                        <div>
+                            <label for="waktu_pengajuan" class="block font-medium text-gray-700">Waktu Pengajuan</label>
+                            <input type="datetime-local" name="waktu_pengajuan" id="waktu_pengajuan" value="{{ old('waktu_pengajuan') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" required>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="lokasi_kegiatan" class="form-label">Lokasi Kegiatan:</label>
-                                <input type="text" class="form-control" id="lokasi_kegiatan" name="lokasi_kegiatan" value="{{ old('lokasi_kegiatan') }}" required>
-                            </div>
+                        <div>
+                            <label for="lokasi_kegiatan" class="block font-medium text-gray-700">Lokasi Kegiatan</label>
+                            <input type="text" name="lokasi_kegiatan" id="lokasi_kegiatan" value="{{ old('lokasi_kegiatan') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" required>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="kategori" class="form-label">Kategori:</label>
-                                <select class="form-control" id="kategori" name="kategori" required>
-                                    <option value="darurat" {{ old('kategori') == 'darurat' ? 'selected' : '' }}>Darurat</option>
-                                    <option value="non-darurat" {{ old('kategori') == 'non-darurat' ? 'selected' : '' }}>Non-Darurat</option>
-                                </select>
-                            </div>
+                        <div>
+                            <label for="kategori" class="block font-medium text-gray-700">Kategori</label>
+                            <select name="kategori" id="kategori" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" required>
+                                <option value="darurat" {{ old('kategori') == 'darurat' ? 'selected' : '' }}>Darurat</option>
+                                <option value="non-darurat" {{ old('kategori') == 'non-darurat' ? 'selected' : '' }}>Non-Darurat</option>
+                            </select>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="detail_permintaan" class="form-label">Detail Permintaan (Opsional):</label>
-                                <textarea class="form-control" id="detail_permintaan" name="detail_permintaan" rows="3">{{ old('detail_permintaan') }}</textarea>
-                            </div>
+                        <div>
+                            <label for="detail_permintaan" class="block font-medium text-gray-700">Detail Permintaan (Opsional)</label>
+                            <textarea name="detail_permintaan" id="detail_permintaan" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">{{ old('detail_permintaan') }}</textarea>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="foto_p3k" class="form-label">Foto P3K (Opsional):</label>
-                                <input type="file" class="form-control" id="foto_p3k" name="foto_p3k">
-                            </div>
+                        <div>
+                            <label for="foto_p3k" class="block font-medium text-gray-700">Foto P3K (Opsional)</label>
+                            <input type="file" name="foto_p3k" id="foto_p3k" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+                        </div>
 
-                            <button type="submit" class="btn btn-primary">Ajukan</button>
-                            <a href="{{ route('permintaan_p3k.index') }}" class="btn btn-secondary">Batal</a>
-                        </form>
-                    </div>
+                        <!-- Buttons -->
+                        <div class="flex space-x-4">
+                            <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                Ajukan
+                            </button>
+                            <a href="{{ route('permintaan_p3k.index') }}" class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                                Batal
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
