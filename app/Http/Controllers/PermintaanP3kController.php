@@ -24,7 +24,8 @@ class PermintaanP3kController extends Controller
 
     public function create()
     {
-        return view('permintaan_p3k.create');
+        $permintaanP3ks = PermintaanP3k::all(); // Ambil semua data Permintaan P3K
+         return view('permintaan_p3k.create', compact('permintaanP3ks'));
     }
 
     public function store(Request $request)

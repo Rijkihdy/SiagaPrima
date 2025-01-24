@@ -6,6 +6,9 @@ use App\Models\Relawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class RelawanController extends Controller
 {
     public function index()
@@ -73,5 +76,65 @@ class RelawanController extends Controller
     {
         $relawan->delete();
         return redirect()->route('relawan.index')->with('success', 'Relawan berhasil dihapus.');
+    }
+
+    // untuk login 
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::guard('relawan')->attempt($credentials)) { // Gunakan guard 'relawan'
+            $request->session()->regenerate();
+
+            return redirect()->intended('/relawan/dashboard'); // Redirect ke dashboard relawan
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('relawan')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.relawan.register');
+    }
+
+    public function register(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:relawans',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        Relawan::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('relawan.login')->with('success', 'Registrasi Berhasil. Silakan Login!');
     }
 }

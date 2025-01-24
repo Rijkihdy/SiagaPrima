@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Relawan;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash; // Import Hash
 
 class RelawanSeeder extends Seeder
 {
@@ -11,7 +12,9 @@ class RelawanSeeder extends Seeder
     {
         $relawans = [
             [
-                'nama_relawan' => 'Budi Santoso',
+                'nama' => 'Budi Santoso', 
+                'email' => 'budi.santoso@example.com', 
+                'password' => Hash::make('password'), 
                 'spesialisasi' => 'Medis',
                 'jabatan' => 'Dokter',
                 'kontak' => '081234567890',
@@ -19,7 +22,9 @@ class RelawanSeeder extends Seeder
                 'domisili' => 'Jakarta',
             ],
             [
-                'nama_relawan' => 'Siti Aminah',
+                'nama' => 'Siti Aminah', 
+                'email' => 'siti.aminah@example.com', 
+                'password' => Hash::make('password'), 
                 'spesialisasi' => 'Logistik',
                 'jabatan' => 'Koordinator Logistik',
                 'kontak' => '089876543210',
@@ -27,7 +32,9 @@ class RelawanSeeder extends Seeder
                 'domisili' => 'Bandung',
             ],
             [
-                'nama_relawan' => 'Rudi Hartono',
+                'nama' => 'Rudi Hartono',
+                'email' => 'rudi.hartono@example.com', 
+                'password' => Hash::make('password'), 
                 'spesialisasi' => 'Evakuasi',
                 'jabatan' => 'Tim Evakuasi',
                 'kontak' => '085712345678',
@@ -35,7 +42,9 @@ class RelawanSeeder extends Seeder
                 'domisili' => 'Surabaya',
             ],
             [
-                'nama_relawan' => 'Dewi Lestari',
+                'nama' => 'Dewi Lestari', 
+                'email' => 'dewi.lestari@example.com',
+                'password' => Hash::make('password'), 
                 'spesialisasi' => 'Komunikasi',
                 'jabatan' => 'Operator Radio',
                 'kontak' => '087788990011',
@@ -43,7 +52,9 @@ class RelawanSeeder extends Seeder
                 'domisili' => 'Medan',
             ],
             [
-                'nama_relawan' => 'Agus Setiawan',
+                'nama' => 'Agus Setiawan', 
+                'email' => 'agus.setiawan@example.com',
+                'password' => Hash::make('password'), 
                 'spesialisasi' => 'Medis',
                 'jabatan' => 'Perawat',
                 'kontak' => '082233445566',

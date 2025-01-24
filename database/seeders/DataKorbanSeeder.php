@@ -2,17 +2,23 @@
 
 namespace Database\Seeders;
 
-use App\Models\DataKorban; // Import model DataKorban
+use App\Models\DataKorban;
+use App\Models\Bencana;
+use App\Models\PermintaanP3k;
 use Illuminate\Database\Seeder;
 
 class DataKorbanSeeder extends Seeder
 {
     public function run(): void
     {
+        $bencanas = Bencana::all();
+        $permintaanP3ks = PermintaanP3k::all();
+
         $dataKorban = [
             [
-                'bencana_id' => 1, // Ganti dengan ID bencana yang valid
-                'permintaan_p3k_id' => null, // Bisa null jika terkait bencana langsung
+                'nama_korban' => 'Budi Santoso',
+                'bencana_id' => $bencanas->isNotEmpty() ? $bencanas->random()->id : null, // Ambil id random jika ada data
+                'permintaan_p3k_id' => null,
                 'alamat' => 'Jl. Pahlawan No. 10, Jakarta Selatan',
                 'no_telp_korban' => '081212345678',
                 'deskripsi' => 'Korban luka ringan akibat banjir.',
@@ -20,12 +26,13 @@ class DataKorbanSeeder extends Seeder
                 'umur' => 25,
                 'jenis_kelamin' => 'laki-laki',
                 'foto_korban' => null,
-                'jumlah_korban' => 1, // Jumlah korban dalam data ini
+                'jumlah_korban' => 2,
                 'rujukan' => 'Puskesmas terdekat',
             ],
             [
-                'bencana_id' => null, // Bisa null jika terkait permintaan P3K
-                'permintaan_p3k_id' => 1, // Ganti dengan ID permintaan P3K yang valid
+                'nama_korban' => 'Siti Aminah',
+                'bencana_id' => null,
+                'permintaan_p3k_id' => $permintaanP3ks->isNotEmpty() ? $permintaanP3ks->random()->id : null,
                 'alamat' => 'Jl. Merdeka No. 5, Bandung',
                 'no_telp_korban' => '085678901234',
                 'deskripsi' => 'Korban pingsan saat pertandingan sepak bola.',
@@ -37,7 +44,8 @@ class DataKorbanSeeder extends Seeder
                 'rujukan' => 'Rumah Sakit Umum',
             ],
             [
-                'bencana_id' => 2,
+                'nama_korban' => 'Joko Widodo',
+                'bencana_id' => $bencanas->isNotEmpty() ? $bencanas->random()->id : null,
                 'permintaan_p3k_id' => null,
                 'alamat' => 'Desa Sukamaju, Lombok Utara',
                 'no_telp_korban' => '087711223344',
@@ -46,12 +54,13 @@ class DataKorbanSeeder extends Seeder
                 'umur' => 45,
                 'jenis_kelamin' => 'laki-laki',
                 'foto_korban' => null,
-                'jumlah_korban' => 1,
+                'jumlah_korban' => 3,
                 'rujukan' => 'Posko Kesehatan',
             ],
-             [
+            [
+                'nama_korban' => 'Dewi Sartika',
                 'bencana_id' => null,
-                'permintaan_p3k_id' => 2,
+                'permintaan_p3k_id' => $permintaanP3ks->isNotEmpty() ? $permintaanP3ks->random()->id : null,
                 'alamat' => 'Jl. Sudirman No. 20, Jakarta Pusat',
                 'no_telp_korban' => '082299887766',
                 'deskripsi' => 'Korban luka bakar ringan akibat kecelakaan kecil.',

@@ -10,17 +10,8 @@ class DataKorban extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bencana_id',
-        'permintaan_p3k_id',
-        'nama_korban',
-        'alamat',
-        'no_telp_korban',
-        'deskripsi',
-        'riwayat_penyakit',
-        'umur',
-        'jenis_kelamin',
-        'foto_korban',
-        'rujukan'
+        'nama_korban', 'bencana_id', 'permintaan_p3k_id', 'alamat', 'no_telp_korban', 'deskripsi',
+        'riwayat_penyakit', 'umur', 'jenis_kelamin', 'foto_korban', 'jumlah_korban', 'rujukan'
     ];
 
     public function bencana()

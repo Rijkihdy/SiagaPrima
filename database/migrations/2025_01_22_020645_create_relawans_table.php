@@ -6,26 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('relawans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_relawan');
+            $table->string('nama'); // Lebih ringkas dari 'nama_relawan'
+            $table->string('email')->unique(); // Kolom email, wajib dan unique
+            $table->string('password'); // Kolom password, wajib
             $table->string('spesialisasi')->nullable();
             $table->string('jabatan')->nullable();
-            $table->string('kontak');
-            $table->enum('status_relawan', ['aktif', 'tidak aktif']);
+            $table->string('kontak')->nullable(); // Ganti nama menjadi kontak
+            $table->enum('status_relawan', ['aktif', 'tidak aktif'])->default('tidak aktif'); // Tambahkan default value
             $table->string('domisili')->nullable();
+            $table->rememberToken(); // Untuk fitur "Remember Me"
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('relawans');

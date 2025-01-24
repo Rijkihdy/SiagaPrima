@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('data_korbans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bencana_id')->nullable()->constrained('bencanas')->onDelete('cascade'); 
+            $table->string('nama_korban')->nullable();
+            $table->foreignId('bencana_id')->nullable()->constrained('bencanas')->onDelete('cascade');
             $table->foreignId('permintaan_p3k_id')->nullable()->constrained('permintaan_p3ks')->onDelete('cascade');
             $table->text('alamat')->nullable();
             $table->string('no_telp_korban')->nullable();
